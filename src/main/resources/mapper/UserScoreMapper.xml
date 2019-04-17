@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wlxh.just.dao.UserScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.wlxh.just.model.UserScore" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_score" property="userScore" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insUserScore" parameterType="com.wlxh.just.model.UserScore">
+    insert into userscore (user_id,user_score,name) values
+    (#{userId,jdbcType=INTEGER},#{userScore,jdbcType=INTEGER},#{name,jdbcType=VARCHAR});
+  </insert>
+
+  <update id="updById" parameterType="com.wlxh.just.model.UserScore">
+    update userscore set user_score=#{userScore,jdbcType=INTEGER}  where user_id=#{userId,jdbcType=INTEGER};
+  </update>
+  <select id="selById" resultMap="BaseResultMap">
+    select * from userscore where user_id=#{id,jdbcType=INTEGER};
+  </select>
+    <select id="selAll" resultMap="BaseResultMap">
+        select * from userscore;
+    </select>
+
+</mapper>
